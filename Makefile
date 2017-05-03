@@ -8,14 +8,12 @@ consul:
 	echo "Consul container is running"
 
 tf-files: 
-	scripts/build-kv.py lab.json > tf/vpipes.tf
+	docker run --rm -v ${PWD}:/mount --workdir /mount -it python:3.6.1-alpine /mount/scripts/build-kv.py lab.json > tf/vpipes.tf
 
-plan:
-	./scripts/build-kv.py lab.json > tf/vpipes.tf
+plan:tf-files
 	docker run -v ${PWD}/tf:/tf -v /var/run/docker.sock:/var/run/docker.sock --rm --net host --workdir /tf -it hashicorp/terraform:light plan
 
-apply:
-	./scripts/build-kv.py lab.json > tf/vpipes.tf
+apply:tf-files
 	docker run -v ${PWD}/tf:/tf -v /var/run/docker.sock:/var/run/docker.sock --rm --net host --workdir /tf -it hashicorp/terraform:light apply
 	for i in $$(jq -r '.devices[] | .name' lab.json); do docker network disconnect bridge $$i; done
 
