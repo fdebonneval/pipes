@@ -1,13 +1,13 @@
 {
   "service": {
-    "name": "ssh",
-    "port": 22,
+    "name": "telnet",
+    "port": 23,
     "enableTagOverride": false,
     "checks": [
       {
-        "id": "ssh",
-        "name": "SSH TCP VM port 22",
-        "tcp": "localhost:22",
+        "id": "telnet",
+        "name": "Telnet TCP VM port 23",
+        "tcp": "localhost:23",
         "interval": "10s",
         "timeout": "1s"
       }

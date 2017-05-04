@@ -4,7 +4,7 @@ cables:
 
 consul:
 	docker inspect consul > /dev/null 2>&1 || \
-	docker run -d --rm -p 8500:8500 --name consul --net vpipes consul:0.8.1 agent -dev -server -datacenter=vpipes -client=0.0.0.0 -ui && \
+	docker run -d --rm -p 8500:8500 --name consul --net vpipes consul:0.8.1 agent -dev -server -datacenter=vpipes -client=0.0.0.0 -bind=0.0.0.0 -ui -disable-host-node-id && \
 	echo "Consul container is running"
 
 tf-files: 

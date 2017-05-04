@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/local/bin/python3
 
 import json
 import sys
@@ -46,12 +46,12 @@ for device in devices:
         if cable['ahost'] == device:
            print (kv_key_header)
            print ("        path = \"cables/",device,"/",cable['abridge'],"\"", sep="")
-           print ("        value = \"",cable['bhost'],"-",cable['tun-id'],"\"", sep="")
+           print ("        value = \"",cable['bhost'],"\"", sep="")
            print (kv_key_footer)
         if cable['bhost'] == device:
            print (kv_key_header)
            print ("        path = \"cables/",device,"/",cable['bbridge'],"\"", sep="")
-           print ("        value = \"",cable['ahost'],"--",cable['tun-id'],"\"", sep="")
+           print ("        value = \"",cable['ahost'],"\"", sep="")
            print ("        delete = \"","true","\"", sep="")
            print (kv_key_footer)
 print (kv_footer)

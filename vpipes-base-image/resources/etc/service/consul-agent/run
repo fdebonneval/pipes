@@ -5,4 +5,5 @@ consul agent \
   -join consul \
   -config-file /etc/consul-agent/consul-agent.json \
   -node $(hostname) \
+  -disable-host-node-id \
   -datacenter vpipes
